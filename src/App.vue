@@ -1,12 +1,12 @@
 <template>
-  <screenlet :loading="loading.table">
+  <screenlet>
     <paginated-table
       :colNames="['Id', 'First Name', 'Last Name', 'Address']"
       :edit="true"
       :del="true"
+      :view="true"
       @on-edit="editRecord"
       @on-delete="deleteRecord"
-      @loading="(loading) => load('table', loading)"
     />
   </screenlet>
   <screenlet> </screenlet>
@@ -24,9 +24,6 @@ export default {
   },
   data() {
     return {
-      loading: {
-        table: false,
-      },
     };
   },
   methods: {
@@ -35,9 +32,6 @@ export default {
     },
     deleteRecord(record) {
       console.log("DELETE RECORD", record);
-    },
-    load(name, loading) {
-      this.loading[name] = loading;
     },
   },
 };
@@ -49,10 +43,14 @@ export default {
   padding: 0;
   margin: 0;
   font-size: 1em;
+  color: white;
 }
 *:hover,
 *:active {
   outline: none;
+}
+input, select{
+  background: #333;
 }
 
 #app {
@@ -76,5 +74,6 @@ button {
 button:hover {
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.4);
   cursor: pointer;
+  filter: brightness(120%);
 }
 </style>
